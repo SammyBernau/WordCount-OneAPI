@@ -1,4 +1,4 @@
-//#include "../include/hash.h"
+#include "../include/util.h"
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -12,79 +12,9 @@
 #include <unordered_map>
 #include <CL/sycl.hpp>
 #include "../include/CLI11.hpp"
-// #include <openssl/evp.h>
-// #include <openssl/md5.h>
-// #include <openssl/sha.h>
 
 using namespace sycl;
 using namespace std;
-
-
-//-------------------------------------START OF HELPER FUNCTIONS------------------------------------- 
-
-//Gets a text file and inserts each individual word into a set
-vector<string> file_to_vec(string input_file) {
-  set<string> words;
-  fstream new_file; // file object
-
-  try {
-    new_file.open(input_file, ios::in); // open file object for reading
-    if (!new_file.is_open()) {
-      cout << "Error opening file: " << input_file << std::endl;
-    }
-    if (new_file.is_open()) {
-      string line;
-      while (getline(new_file, line)) { // read file text
-        string curr_word = "";
-        for (auto &ch : line) {
-          if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
-            curr_word += ch;
-          }
-            
-          if (ch == ' ') {
-            words.insert(curr_word);
-            curr_word = "";
-          }
-        }
-
-        if (curr_word.length() > 0) {
-          words.insert(curr_word);
-          curr_word = "";
-        }
-      }
-      new_file.close();
-    }
-  } catch (const ios_base::failure &e) {
-    cerr << "Error opening file: " << e.what() << std::endl;
-  }
-  std::cout << "Read file" << std::endl;
-
-  std::vector<std::string> words_vec(words.begin(), words.end());
-
-  return words_vec;
-}
-
-// //OpenSSL sha256 string to hash
-// int my_sha256(const string &w) {
-//   unsigned char sha256_hash[SHA256_DIGEST_LENGTH];
-//   SHA256(reinterpret_cast<const unsigned char *>(w.c_str()), w.length(),
-//          sha256_hash);
-//   string sha256_str(reinterpret_cast<const char *>(sha256_hash),
-//                     SHA256_DIGEST_LENGTH);
-//   return hash<string>{}(sha256_str);
-// }
-
-// //OpenSSL sha512 string to hash
-// int my_sha512(const string &w) {
-//   unsigned char sha512_hash[SHA512_DIGEST_LENGTH];
-//   SHA512(reinterpret_cast<const unsigned char *>(w.c_str()), w.length(),
-//          sha512_hash);
-//   string sha512_str(reinterpret_cast<const char *>(sha512_hash),
-//                     SHA512_DIGEST_LENGTH);
-//   return hash<string>{}(sha512_str);
-// }
-
-//-------------------------------------END OF HELPER FUNCTIONS-------------------------------------
 
 // Create an exception handler for asynchronous SYCL exceptions
 static auto exception_handler = [](sycl::exception_list e_list) {
@@ -103,18 +33,18 @@ static auto exception_handler = [](sycl::exception_list e_list) {
 
 void hash_words(sycl::queue& q, vector<string>& words_vec, vector<int>& hash_vec) {
 
+  //Converts vector<string> to vector<char> for compatibility with sycl::buffer
   std::vector<char> words_chars;
   for (const auto& word : words_vec) {
     words_chars.insert(words_chars.end(), word.begin(), word.end());
   }
   
 
-  //Create buffer to hold words from set
+  //Create buffer to hold words from vector
   sycl::buffer<char> words_buf(words_chars.data(), words_chars.size());
   
 
   //Create a buffer to hold the hashes
-  //range<1> num_words{words_vec.size()};
   sycl::buffer<int> hash_buf(hash_vec.data(), hash_vec.size());
   
 

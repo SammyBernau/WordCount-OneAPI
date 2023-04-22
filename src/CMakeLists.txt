@@ -7,9 +7,11 @@ find_package(OpenSSL REQUIRED)
 if(DEFINED USM AND (NOT(USM EQUAL 0)))
     message(STATUS "Using the USM variant.")
     set(SOURCE_FILE run.cpp)
+    set(LINK_FILE util/util.cpp)
     set(TARGET_NAME word_count)
 else()    
     set(SOURCE_FILE run.cpp)
+    set(LINK_FILE util/util.cpp)
     set(TARGET_NAME word_count)
 endif()
 
@@ -37,7 +39,7 @@ set(LINK_FLAGS "-fsycl")
 # CMake executes:
 #    [compile] icpx -fsycl -o <file>.cpp.o -c <file>.cpp
 #    [link]    icpx -fsycl <file>.cpp.o -o <file>.fpga_emu
-add_executable(${TARGET_NAME} ${SOURCE_FILE})
+add_executable(${TARGET_NAME} ${SOURCE_FILE} ${LINK_FILE})
 target_link_libraries(word_count OpenSSL::Crypto OpenSSL::SSL)
 set_target_properties(${TARGET_NAME} PROPERTIES COMPILE_FLAGS "${COMPILE_FLAGS}")
 set_target_properties(${TARGET_NAME} PROPERTIES LINK_FLAGS "${LINK_FLAGS}")
