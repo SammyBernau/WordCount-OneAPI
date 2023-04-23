@@ -6,5 +6,5 @@ using namespace std;
 
 vector<string> file_to_vec(string);
 
-// int sha256(const string &w);
-// int sha512(const string &w);
+int sha256(const string &w);
+int sha512(const string &w);

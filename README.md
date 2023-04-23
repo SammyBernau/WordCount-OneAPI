@@ -1,5 +1,9 @@
 # OneAPI `WordCount` 
 
+## APP
+
+- WordCount-OneAPI is a Intel OneAPI implementation of a word count program that counts unique words from an input text. The benefit of this implementation is that it utilizes the SYCL library, performing operations in parallel. 
+
 ## Notices: 
 
 - Everything is working thus far minus OpenSSL compatibility with SYCL compiler
