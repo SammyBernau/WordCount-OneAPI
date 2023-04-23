@@ -4,10 +4,12 @@
 
 - WordCount-OneAPI is a Intel OneAPI implementation of a word count program that counts unique words from an input text. The benefit of this implementation is that it utilizes the SYCL library, performing operations in parallel. 
 
-## Notices: 
+## TODOs: 
 
 - Everything is working thus far minus OpenSSL compatibility with SYCL compiler
-   - Plan to fix: 04/23/2023
+   - Fixed: 04/23/2023
+- Update 'how to run program' section in README
+   - Planned fix: 04/23/2023
 
 ## Set Environment Variables
 
@@ -189,3 +191,72 @@ time.)
    ```
    nmake clean
    ```
+## Run the `WordCount` Program
+
+### Configurable Parameters
+
+The source file (`run.cpp`) allows you to input a txt file at runtime.
+
+### On Linux
+
+#### Run for CPU and GPU
+
+1. Change to the output directory.
+
+2. Run the program for buffers.
+    ```
+    ./word_count -i ../hamlet.txt
+    ```
+#### Run for FPGA
+
+1.  Change to the output directory.
+
+2.  Run for FPGA emulation.
+    ```
+    ./vector-add-buffers.fpga_emu
+    ./vector-add-usm.fpga_emu
+    ```
+3. Run on FPGA simulator.
+   ```
+   CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=1 ./vector-add-buffers.fpga_sim
+   CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=1 ./vector-add-usm.fpga_sim
+   ```
+4. Run on FPGA hardware (only if you ran `cmake` with `-DFPGA_DEVICE=<board-support-package>:<board-variant>`).
+    ```
+    ./vector-add-buffers.fpga
+    ./vector-add-usm.fpga
+    ```
+
+### On Windows
+
+#### Run for CPU and GPU
+
+1. Change to the output directory.
+
+2. Run the program for Unified Shared Memory (USM) and buffers.
+    ```
+    vector-add-usm.exe
+    vector-add-buffers.exe
+    ```
+
+#### Run for FPGA
+
+1.  Change to the output directory.
+
+2.  Run for FPGA emulation.
+    ```
+    vector-add-buffers.fpga_emu.exe
+    vector-add-usm.fpga_emu.exe
+    ```
+3. Run on FPGA simulator.
+   ```
+   set CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=1
+   vector-add-buffers.fpga_sim.exe
+   vector-add-usm.fpga_sim.exe
+   set CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=
+   ```
+4. Run on FPGA hardware (only if you ran `cmake` with `-DFPGA_DEVICE=<board-support-package>:<board-variant>`).
+    ```
+    vector-add-buffers.fpga.exe
+    vector-add-usm.fpga.exe
+    ```
