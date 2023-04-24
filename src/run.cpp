@@ -10,6 +10,8 @@
 #include <string>
 #include <cctype>
 #include <unordered_map>
+#include <thread>
+#include <chrono>
 
 //SYCL includes
 #include <sycl/sycl.hpp>
@@ -196,7 +198,13 @@ try {
   cout << "Running on device: "<< q.get_device().get_info<info::device::name>() << "\n";
   
   //hash_words(q, words_as_vec, words_as_hash);
-  remove_duplicates(q, words_as_hash, output_vec, count); 
+  auto start_2 = chrono::high_resolution_clock::now();
+  remove_duplicates(q, words_as_hash, output_vec, count);
+  auto stop_2 = chrono::high_resolution_clock::now();
+  auto duration_2 = chrono::duration_cast<std::chrono::microseconds>(stop_2 - start_2);
+  int time_elapsed_2 = duration_2.count()/1000000.0;
+  std:: cout << "Time elasped: " << duration_2.count() << " microseconds" << std::endl;  
+  std:: cout << "Time elasped: " << time_elapsed_2 << " seconds" << std::endl; 
 
   } catch (std::exception const &e) {
     cout << "An exception is caught while computing on device.\n";

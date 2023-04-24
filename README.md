@@ -5,8 +5,9 @@
 - WordCount-OneAPI is a Intel OneAPI implementation of a word count program that counts unique words from an input text. The benefit of this implementation is that it utilizes the SYCL library, performing operations in parallel. 
 
 ## TODOs: 
-
-- None currently
+   - use vector<int> with_dups to count how many occurences of a single words occurs and ouput the `word cloud` to std output
+      - add the word to the output_buf like normal but check if it is in there and if it is then add 1 to a subsequent buffer that tracks each word's count
+      - 2D buffers
 
 ## Set Environment Variables
 
