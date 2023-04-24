@@ -6,10 +6,7 @@
 
 ## TODOs: 
 
-- Everything is working thus far minus OpenSSL compatibility with SYCL compiler
-   - Fixed: 04/23/2023
-- Update 'how to run program' section in README
-   - Planned fix: 04/23/2023
+- None currently
 
 ## Set Environment Variables
 
