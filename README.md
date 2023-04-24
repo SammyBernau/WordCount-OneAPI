@@ -58,28 +58,6 @@ To learn more about the extensions and how to configure the oneAPI environment, 
    cd build
    cmake ..
    ```
-   or
-
-   Configure the project to use the Unified Shared Memory (USM) based implementation.
-   ```
-   mkdir build
-   cd build
-   cmake .. -DUSM=1
-   ```
-
-   > **Note**: When building for FPGAs, the default FPGA family will be used (Intel® Agilex®).
-   > You can change the default target by using the command:
-   >  ```
-   >  cmake .. -DFPGA_DEVICE=<FPGA device family or FPGA part number>
-   >  ``` 
-   >
-   > Alternatively, you can target an explicit FPGA board variant and BSP by using the following command: 
-   >  ```
-   >  cmake .. -DFPGA_DEVICE=<board-support-package>:<board-variant>
-   >  ``` 
-   >
-   > You will only be able to run an executable on the FPGA if you specified a BSP.
-
 #### Build for CPU and GPU
     
 1. Build the program.
@@ -91,34 +69,7 @@ To learn more about the extensions and how to configure the oneAPI environment, 
    make clean
    ```
 
-#### Build for FPGA
-
-1. Compile for FPGA emulation.
-   ```
-   make fpga_emu
-   ```
-2. Compile for simulation (fast compile time, targets simulator FPGA device):
-   ```
-   make fpga_sim
-   ```
-3. Generate HTML performance reports.
-   ```
-   make report
-   ```
-   The reports reside at `simple-add_report.prj/reports/report.html`.
-
-4. Compile the program for FPGA hardware. (Compiling for hardware can take a long
-time.)
-   ```
-   make fpga
-   ```
-
-5. Clean the program. (Optional)
-   ```
-   make clean
-   ```
-
-### On Windows*
+### On Windows* `(NOT TESTED)`
 
 #### Configure the build system
 
@@ -130,27 +81,6 @@ time.)
    cd build
    cmake -G "NMake Makefiles" ..
    ```
-   or
-
-   Configure the project to use the Unified Shared Memory (USM) based implementation.
-   ```
-   mkdir build
-   cd build
-   cmake -G "NMake Makefiles" .. -DUSM=1
-   ```
-
-   > **Note**: When building for FPGAs, the default FPGA family will be used (Intel® Agilex®).
-   > You can change the default target by using the command:
-   >  ```
-   >  cmake -G "NMake Makefiles" .. -DFPGA_DEVICE=<FPGA device family or FPGA part number>
-   >  ``` 
-   >
-   > Alternatively, you can target an explicit FPGA board variant and BSP by using the following command: 
-   >  ```
-   >  cmake -G "NMake Makefiles" .. -DFPGA_DEVICE=<board-support-package>:<board-variant>
-   >  ``` 
-   >
-   > You will only be able to run an executable on the FPGA if you specified a BSP.
 
 #### Build for CPU and GPU
 
@@ -159,35 +89,6 @@ time.)
    nmake cpu-gpu
    ```
 2. Clean the program. (Optional)
-   ```
-   nmake clean
-   ```
-
-#### Build for FPGA
-
->**Note**: Compiling to FPGA hardware on Windows* requires a third-party or custom Board Support Package (BSP) with Windows* support.
-
-1. Compile for FPGA emulation.
-   ```
-   nmake fpga_emu
-   ```
-2. Compile for simulation (fast compile time, targets simulator FPGA device):
-   ```
-   nmake fpga_sim
-   ```
-3. Generate HTML performance reports.
-   ```
-   nmake report
-   ```
-The reports reside at `simple-add_report.prj/reports/report.html`.
-
-4. Compile the program for FPGA hardware. (Compiling for hardware can take a long
-time.)
-   ```
-   nmake fpga
-   ```
-
-5. Clean the program. (Optional)
    ```
    nmake clean
    ```
@@ -207,56 +108,14 @@ The source file (`run.cpp`) allows you to input a txt file at runtime.
     ```
     ./word_count -i ../hamlet.txt
     ```
-#### Run for FPGA
 
-1.  Change to the output directory.
-
-2.  Run for FPGA emulation.
-    ```
-    ./vector-add-buffers.fpga_emu
-    ./vector-add-usm.fpga_emu
-    ```
-3. Run on FPGA simulator.
-   ```
-   CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=1 ./vector-add-buffers.fpga_sim
-   CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=1 ./vector-add-usm.fpga_sim
-   ```
-4. Run on FPGA hardware (only if you ran `cmake` with `-DFPGA_DEVICE=<board-support-package>:<board-variant>`).
-    ```
-    ./vector-add-buffers.fpga
-    ./vector-add-usm.fpga
-    ```
-
-### On Windows
+### On Windows `(NOT TESTED)`
 
 #### Run for CPU and GPU
 
 1. Change to the output directory.
 
-2. Run the program for Unified Shared Memory (USM) and buffers.
+2. Run the program for buffers.
     ```
-    vector-add-usm.exe
-    vector-add-buffers.exe
-    ```
-
-#### Run for FPGA
-
-1.  Change to the output directory.
-
-2.  Run for FPGA emulation.
-    ```
-    vector-add-buffers.fpga_emu.exe
-    vector-add-usm.fpga_emu.exe
-    ```
-3. Run on FPGA simulator.
-   ```
-   set CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=1
-   vector-add-buffers.fpga_sim.exe
-   vector-add-usm.fpga_sim.exe
-   set CL_CONTEXT_MPSIM_DEVICE_INTELFPGA=
-   ```
-4. Run on FPGA hardware (only if you ran `cmake` with `-DFPGA_DEVICE=<board-support-package>:<board-variant>`).
-    ```
-    vector-add-buffers.fpga.exe
-    vector-add-usm.fpga.exe
+    word_count.exe -i ../hamlet.txt
     ```

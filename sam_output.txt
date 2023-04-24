@@ -1,0 +1,34 @@
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5881
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5873
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5885
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5887
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5878
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5878
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5884
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5882
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5883
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5884
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5874
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5882
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5881
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5881
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5883
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5881
+Running on device:        Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz
+Number of unique words: 5885
